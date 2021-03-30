@@ -4,5 +4,13 @@ table {
 
 .add-book-button {
     float: right;
-    margin: 10px;
+}
+
+.heading {
+    padding: 10px;
+}
+
+.no-record {
+    padding: 10px;
+    text-align: center;
 }

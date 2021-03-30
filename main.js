@@ -7,6 +7,7 @@ let win;
 function createWindow() {
     Menu.setApplicationMenu(null);
     win = new BrowserWindow({
+        title: 'Electron CRUD App',
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,

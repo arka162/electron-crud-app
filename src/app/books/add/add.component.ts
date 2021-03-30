@@ -69,7 +69,7 @@ export class AddComponent implements OnInit {
 			this.addBook(this.bookForm.value).subscribe(res => {
 				// console.log('addBook submit', res);
 				if (res.status == 1) {
-					this.navigateToList();
+					// this.navigateToList();
 				}
 				else if (res.message) {
 					this.bookForm.controls.BookName.setErrors({ exist: true });

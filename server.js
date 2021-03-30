@@ -39,11 +39,11 @@
             var _id = req.params._id;
             var recordsCount = 0;
             if (_id == '0') {
-                bookDb.count({}).exec(function (err, TotalRecords) {
+                bookDb.count({}).exec(function (err, count) {
                     // console.log('bookDb count err', err);
-                    recordsCount = TotalRecords;
+                    recordsCount = count;
                 });
-                bookDb.find({}).sort({ id: -1 }).exec(function (err, data) {
+                bookDb.find({}).sort({ Count: -1 }).exec(function (err, data) {
                     // console.log('bookDb find err', err);
                     var response = {};
                     if (data.length > 0) {
@@ -57,7 +57,7 @@
                 });
             }
             else {
-                bookDb.findOne({ _id: _id }).sort({ id: -1 }).exec(function (err, data) {
+                bookDb.findOne({ _id: _id }).exec(function (err, data) {
                     // console.log('bookDb find err', err);
                     var response = {};
                     response = { 'status': 1, 'result': { data: data, count: recordsCount } };
@@ -72,16 +72,20 @@
             bookDb.find({ BookName: reqBody.BookName }, function (err, docs) {
                 if (docs.length === 0) {
                     //console.log('INSERT DOC');
-                    var insertData = {
-                        "BookName": reqBody.BookName,
-                        "BookDescription": reqBody.BookDescription,
-                        "BookWriter": reqBody.BookWriter,
-                        "BookPublisher": reqBody.BookPublisher,
-                        "BookPublisherEmail": reqBody.BookPublisherEmail,
-                    }
-                    bookDb.insert(insertData, function (err, newDoc) {
-                        response = { 'status': 1, 'message': 'Book added successfully.', 'result': { data: newDoc } };
-                        res.send(response);
+                    bookDb.count({}).exec(function (err, count) {
+                        // console.log('bookDb count err', err);
+                        var insertData = {
+                            Count: count + 1,
+                            BookName: reqBody.BookName,
+                            BookDescription: reqBody.BookDescription,
+                            BookWriter: reqBody.BookWriter,
+                            BookPublisher: reqBody.BookPublisher,
+                            BookPublisherEmail: reqBody.BookPublisherEmail,
+                        }
+                        bookDb.insert(insertData, function (err, newDoc) {
+                            response = { 'status': 1, 'message': 'Book added successfully.', 'result': { data: newDoc } };
+                            res.send(response);
+                        });
                     });
                 } else {
                     console.log('Sorry, this book already exist.');

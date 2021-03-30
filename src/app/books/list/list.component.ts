@@ -15,7 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class ListComponent implements OnInit, AfterViewInit {
 
 	displayedColumns: string[] = ['BookName', 'BookDescription', 'BookWriter', 'BookPublisher', 'BookPublisherEmail', 'action'];
-	dataSource = new MatTableDataSource<PeriodicElement>();
+	dataSource = new MatTableDataSource<PeriodicElement>([]);
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 	@ViewChild('confirmDialog') confirmDialog: TemplateRef<any>;
 
@@ -37,7 +37,7 @@ export class ListComponent implements OnInit, AfterViewInit {
 		this.getBook().subscribe(res => {
 			// console.log('getBook get', res);
 			if (res.result.data) {
-				this.dataSource = res.result.data;
+				this.dataSource = new MatTableDataSource<PeriodicElement>(res.result.data);
 				this.dataSource.paginator = this.paginator;
 			}
 		});
