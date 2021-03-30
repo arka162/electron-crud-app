@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
 	selector: 'app-add',
@@ -14,10 +15,13 @@ export class AddComponent implements OnInit {
 
 	constructor(
 		private formBuilder: FormBuilder,
-		private _router: Router
+		private _router: Router,
+		private route: ActivatedRoute,
+		private snackBar: MatSnackBar
 	) { }
 
 	ngOnInit(): void {
+		console.log('Book ID', this.route.snapshot.paramMap.get('id'));
 		this.bookForm = this.formBuilder.group({
 			BookName: [null, Validators.required],
 			BookDescription: [null],
@@ -36,6 +40,12 @@ export class AddComponent implements OnInit {
 
 	navigateToList() {
 		this._router.navigate(['list'])
+	}
+
+	showSnackbar(content) {
+		this.snackBar.open(content, '', {
+			duration: 2000
+		});
 	}
 
 }
