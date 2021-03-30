@@ -60,7 +60,7 @@
                         "BookDescription": req.BookDescription,
                         "BookWriter": req.BookWriter,
                         "BookPublisher": req.BookPublisher,
-                        "BookReleaseDate": req.BookReleaseDate
+                        "BookPublisherEmail": req.BookPublisher,
                     }
                     bookDb.insert(docsProcess, function (err) { });
                     response = { 'status': 1, 'message': 'Book added successfully.' };

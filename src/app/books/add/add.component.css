@@ -1,0 +1,22 @@
+.example-container{
+    text-align: center
+}
+
+.form-container{
+    width: 400px; 
+    margin: 0px auto; 
+    margin-top: 200px
+}
+
+.form-field{
+    display: block
+}
+
+.example-button-row {
+    display: table-cell;
+    width: 490px;
+}
+  
+.example-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+ }

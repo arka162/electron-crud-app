@@ -1,0 +1,8 @@
+table {
+    width: 100%;
+}
+
+.add-book-button {
+    float: right;
+    margin: 10px;
+}

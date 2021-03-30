@@ -1,1 +1,53 @@
-<p>add works!</p>
+<div class="example-container">
+    <div class="form-container">
+        <form [formGroup]="bookForm" (submit)="submit()">
+            <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Book Name</mat-label>
+                <input matInput formControlName="BookName" required>
+                <mat-error *ngIf="bookForm.controls.BookName.touched && bookForm.controls.BookName.invalid">
+                    <span *ngIf="bookForm.controls.BookName.errors.required">This field is mandatory.</span>
+                    <span *ngIf="bookForm.controls.BookName.errors.pattern">This field is invalid.</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Book Description</mat-label>
+                <textarea matInput formControlName="BookDescription"></textarea>
+                <mat-error
+                    *ngIf="bookForm.controls.BookDescription.touched && bookForm.controls.BookDescription.invalid">
+                    <span *ngIf="bookForm.controls.BookDescription.errors.required">This field is mandatory.</span>
+                    <span *ngIf="bookForm.controls.BookDescription.errors.pattern">This field is invalid.</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Writer</mat-label>
+                <input matInput formControlName="BookWriter" required>
+                <mat-error *ngIf="bookForm.controls.BookWriter.touched && bookForm.controls.BookWriter.invalid">
+                    <span *ngIf="bookForm.controls.BookWriter.errors.required">This field is mandatory.</span>
+                    <span *ngIf="bookForm.controls.BookWriter.errors.pattern">This field is invalid.</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Publisher Name</mat-label>
+                <input matInput formControlName="BookPublisher" required>
+                <mat-error *ngIf="bookForm.controls.BookPublisher.touched && bookForm.controls.BookPublisher.invalid">
+                    <span *ngIf="bookForm.controls.BookPublisher.errors.required">This field is mandatory.</span>
+                    <span *ngIf="bookForm.controls.BookPublisher.errors.pattern">This field is invalid.</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Publisher Email</mat-label>
+                <input matInput formControlName="BookPublisherEmail" required>
+                <mat-error
+                    *ngIf="bookForm.controls.BookPublisherEmail.touched && bookForm.controls.BookPublisherEmail.invalid">
+                    <span *ngIf="bookForm.controls.BookPublisherEmail.errors.required">This field is mandatory.</span>
+                    <span *ngIf="bookForm.controls.BookPublisherEmail.errors.pattern">This field is invalid.</span>
+                </mat-error>
+            </mat-form-field>
+            <div class="example-button-row">
+                <button mat-raised-button color="primary" type="submit">Save</button>
+                <br>
+                <button mat-flat-button type="button" (click)="navigateToList()">Back to List</button>
+            </div>
+        </form>
+    </div>
+</div>
