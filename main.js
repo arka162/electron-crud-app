@@ -1,20 +1,24 @@
 const { app, BrowserWindow, Menu } = require("electron");
 const path = require("path");
 const url = require("url");
-const developmentMode = true; //true | false
+const developmentMode = false; //true | false
 let win;
+const appIcon = path.join(__dirname, '/dist/assets/icons/512x512.png');
 
 function createWindow() {
     Menu.setApplicationMenu(null);
     win = new BrowserWindow({
         title: 'Electron CRUD App',
+        icon: appIcon,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
             enableRemoteModule: true
         },
         transparent: false,
-        show: false
+        show: false,
+        width: 1024,
+        height: 768,
     });
 
     // load the dist folder from Angular
@@ -26,7 +30,7 @@ function createWindow() {
         })
     );
 
-    win.maximize();
+    // win.maximize();
     win.show();
 
     if (developmentMode) {
@@ -46,7 +50,9 @@ function createWindow() {
     });
 }
 app.disableHardwareAcceleration();
-app.on("ready", createWindow);
+app.on("ready", () => {
+    createWindow();
+});
 
 // on macOS, closing the window doesn't quit the app
 app.on("window-all-closed", () => {
