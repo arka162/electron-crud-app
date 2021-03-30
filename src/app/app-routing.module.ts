@@ -12,6 +12,13 @@ const routes: Routes = [
 		}
 	},
 	{
+		path: 'add/:id',
+		component: AddComponent,
+		data: {
+			moduleName: 'edit'
+		}
+	},
+	{
 		path: 'list',
 		component: ListComponent,
 		data: {

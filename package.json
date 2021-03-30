@@ -1,83 +1,96 @@
 {
-  "name": "electron-crud-app",
-  "version": "0.0.0",
-  "main": "main.js",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "electron": "ng build --base-href ./ && electron .",
-    "dist": "ng build --base-href ./ && electron-builder"
-  },
-  "build": {
-    "appId": "electron.crud.apm",
-    "productName": "Electron CRUD App",
-    "artifactName": "Electron CRUD App v${version}.${ext}",
-    "directories": {
-      "buildResources": "build",
-      "output": "electron-builder-builds"
-    },
-    "win": {
-      "target": [
-        "nsis"
-      ]
-    },
-    "nsis": {
-      "oneClick": true,
-      "allowToChangeInstallationDirectory": false,
-      "perMachine": false,
-      "license": "build/license.txt",
-      "differentialPackage": false,
-      "runAfterFinish": true
-    },
-    "linux": {
-      "target": "AppImage",
-      "executableName": "Electron CRUD App"
-    }
-  },
-  "files": [
-    "*.js",
-    "node_modules"
-  ],
-  "private": true,
-  "dependencies": {
-    "@angular/animations": "~11.2.7",
-    "@angular/cdk": "^11.2.6",
-    "@angular/common": "~11.2.7",
-    "@angular/compiler": "~11.2.7",
-    "@angular/core": "~11.2.7",
-    "@angular/forms": "~11.2.7",
-    "@angular/material": "^11.2.6",
-    "@angular/platform-browser": "~11.2.7",
-    "@angular/platform-browser-dynamic": "~11.2.7",
-    "@angular/router": "~11.2.7",
-    "express": "^4.17.1",
-    "nedb": "^1.8.0",
-    "rxjs": "~6.6.0",
-    "tslib": "^2.0.0",
-    "zone.js": "~0.11.3"
-  },
-  "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1102.6",
-    "@angular/cli": "~11.2.6",
-    "@angular/compiler-cli": "~11.2.7",
-    "@types/jasmine": "~3.6.0",
-    "@types/node": "^12.11.1",
-    "codelyzer": "^6.0.0",
-    "electron": "^12.0.2",
-    "jasmine-core": "~3.6.0",
-    "jasmine-spec-reporter": "~5.0.0",
-    "karma": "~6.1.0",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage": "~2.0.3",
-    "karma-jasmine": "~4.0.0",
-    "karma-jasmine-html-reporter": "^1.5.0",
-    "protractor": "~7.0.0",
-    "ts-node": "~8.3.0",
-    "tslint": "~6.1.0",
-    "typescript": "~4.1.5"
-  }
+	"name": "electron-crud-app",
+	"productName": "Electron CRUD App",
+	"version": "0.0.1",
+	"main": "main.js",
+	"author": "Arkaprova Majumder <arka162@gmail.com>",
+	"scripts": {
+		"ng": "ng",
+		"start": "ng serve",
+		"build": "ng build",
+		"test": "ng test",
+		"lint": "ng lint",
+		"e2e": "ng e2e",
+		"electron": "ng build --base-href ./ && electron .",
+		"dist": "ng build --base-href ./ && electron-builder",
+		"dist:win32": "electron-builder --ia32 --win",
+		"dist:win64": "electron-builder --x64 --win",
+		"postinstall": "electron-builder install-app-deps"
+	},
+	"build": {
+		"appId": "electron.crud.apm",
+		"productName": "Electron CRUD App",
+		"artifactName": "Electron CRUD App v${version}.${ext}",
+		"directories": {
+			"buildResources": "build",
+			"output": "electron-builder-builds"
+		},
+		"win": {
+			"target": [
+				"nsis"
+			]
+		},
+		"nsis": {
+			"oneClick": false,
+			"allowToChangeInstallationDirectory": false,
+			"perMachine": false,
+			"license": "build/license.txt",
+			"differentialPackage": false,
+			"installerIcon": "build/icons/256x256.ico",
+			"runAfterFinish": true
+		},
+		"linux": {
+			"target": [
+				"AppImage",
+				"deb"
+			],
+			"executableName": "Electron CRUD App",
+			"icon": "build/icons/256x256.png",
+			"category": "Utility"
+		}
+	},
+	"files": [
+		"*.js",
+		"node_modules"
+	],
+	"private": true,
+	"dependencies": {
+		"@angular/animations": "~11.2.7",
+		"@angular/cdk": "^11.2.6",
+		"@angular/common": "~11.2.7",
+		"@angular/compiler": "~11.2.7",
+		"@angular/core": "~11.2.7",
+		"@angular/forms": "~11.2.7",
+		"@angular/material": "^11.2.6",
+		"@angular/platform-browser": "~11.2.7",
+		"@angular/platform-browser-dynamic": "~11.2.7",
+		"@angular/router": "~11.2.7",
+		"body-parser": "^1.19.0",
+		"express": "^4.17.1",
+		"nedb": "^1.8.0",
+		"rxjs": "~6.6.0",
+		"tslib": "^2.0.0",
+		"zone.js": "~0.11.3"
+	},
+	"devDependencies": {
+		"@angular-devkit/build-angular": "~0.1102.6",
+		"@angular/cli": "~11.2.6",
+		"@angular/compiler-cli": "~11.2.7",
+		"@types/jasmine": "~3.6.0",
+		"@types/node": "^12.11.1",
+		"codelyzer": "^6.0.0",
+		"electron": "^12.0.2",
+		"jasmine-core": "~3.6.0",
+		"jasmine-spec-reporter": "~5.0.0",
+		"karma": "~6.1.0",
+		"karma-chrome-launcher": "~3.1.0",
+		"karma-coverage": "~2.0.3",
+		"karma-jasmine": "~4.0.0",
+		"karma-jasmine-html-reporter": "^1.5.0",
+		"protractor": "~7.0.0",
+		"ts-node": "~8.3.0",
+		"tslint": "~6.1.0",
+		"electron-builder": "^22.10.5",
+		"typescript": "~4.1.5"
+	}
 }
