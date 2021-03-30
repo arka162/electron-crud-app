@@ -29,11 +29,24 @@
         <!-- Action Column -->
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef> Action </th>
-            <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary"
-                    (click)="getRecord(element._myId)">Edit Book Details</button> </td>
+            <td mat-cell *matCellDef="let element">
+                <button mat-raised-button color="primary" (click)="navigateToEdit(element._id)">Edit Book
+                    Details</button>&nbsp;
+                <button mat-raised-button color="warn" (click)="deleteBook(element._id)">Delete</button>
+            </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
+<ng-template #confirmDialog>
+    <h2 mat-dialog-title>Confirm</h2>
+    <mat-dialog-content>
+        <h3>This book will be lost. Delete this book?</h3>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button [mat-dialog-close]="true" color="warn" cdkFocusInitial>Delete</button>
+    </mat-dialog-actions>
+</ng-template>
