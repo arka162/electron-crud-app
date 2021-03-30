@@ -8,9 +8,12 @@ function createWindow() {
     Menu.setApplicationMenu(null);
     win = new BrowserWindow({
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            contextIsolation: false,
+            enableRemoteModule: true
         },
-        transparent: false
+        transparent: false,
+        show: false
     });
 
     // load the dist folder from Angular
@@ -23,6 +26,7 @@ function createWindow() {
     );
 
     win.maximize();
+    win.show();
 
     if (developmentMode) {
         // The following is optional and will open the DevTools:
